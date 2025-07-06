@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MyRetail</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Custom scrollbar for slider dots */
+    .slick-dots {
+      bottom: -30px;
+    }
+    /* Carousel arrows */
+    .arrow-button {
+      background-color: rgba(0,0,0,0.4);
+      border-radius: 50%;
+      height: 38px;
+      width: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 50;
+      user-select: none;
+      transition: background-color 0.3s ease;
+    }
+    .arrow-button:hover {
+      background-color: rgba(0,0,0,0.7);
+    }
+    .arrow-left {
+      left: 10px;
+    }
+    .arrow-right {
+      right: 10px;
+    }
+  </style>
+</head>
+<body class="bg-white font-sans text-gray-700">
+
+<!-- Top Info Bar -->
+<header class="bg-gray-900 text-white text-sm py-2 px-4 flex justify-between items-center select-none">
+  <div class="flex space-x-6 items-center">
+    <div class="flex items-center space-x-1">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h18v6H3V3z"></path><path d="M21 15a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3v-3h18v3z"></path><path d="M16 21v-5"></path></svg>
+      <span>Free Shipping</span>
+    </div>
+    <div class="flex items-center space-x-1">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2" ry="2"></rect><path d="M12 12v1"></path></svg>
+      <span>Payment Methods</span>
+    </div>
+  </div>
+  <div class="flex items-center space-x-2">
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2l-6 6m6 0v8a2 2 0 0 1 -2 2H6a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h5"></path><path d="M13 8v4"></path><circle cx="12" cy="16" r="1"></circle></svg>
+    <span>Call us 9304174730</span>
+  </div>
+</header>
+
+<!-- Navigation Bar -->
+<nav class="bg-white border-b border-gray-200 px-4 py-3 flex items-center justify-between sticky top-0 z-40">
+  <div class="flex items-center space-x-4">
+    <!-- Hamburger Icon -->
+    <button id="menu-button" aria-label="Toggle Menu" class="md:hidden">
+      <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+    <a href="#" class="text-xl font-semibold text-gray-800 user-select-none">MyRetail</a>
+  </div>
+  <div class="flex-1 px-4 max-w-xl">
+    <input type="search" placeholder="Search Products" aria-label="Search Products" class="w-full border border-gray-300 rounded-md px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600" id="product-search" />
+  </div>
+  <div class="flex items-center space-x-6 text-gray-700 text-sm select-none">
+    <button id="cart-button" class="relative">
+      <svg class="w-6 h-6 inline" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="9" cy="21" r="1"></circle>
+        <circle cx="20" cy="21" r="1"></circle>
+        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+      </svg>
+      <span id="cart-count" class="absolute -top-2 -right-2 bg-blue-600 rounded-full text-white text-xs px-1.5 leading-none font-semibold">1</span>
+    </button>
+    <div class="relative group cursor-pointer">
+  <span>Brands</span>
+  <svg class="w-3 h-3 inline ml-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="6 9 12 15 18 9"></polyline>
+  </svg>
+  <div class="absolute hidden group-hover:block bg-white border border-gray-200 rounded shadow-md py-2 mt-2 min-w-[130px] z-50">
+    <a href="brand.html?brand=Nike" class="block px-4 py-1 hover:bg-gray-100">Nike</a>
+    <a href="brand.html?brand=Adidas" class="block px-4 py-1 hover:bg-gray-100">Adidas</a>
+    <a href="brand.html?brand=Puma" class="block px-4 py-1 hover:bg-gray-100">Puma</a>
+  </div>
+</div>
+
+    <a href="shop.html" class="hover:underline">Shop</a>
+
+    <div class="relative group cursor-pointer">
+  <span class="flex items-center gap-1">
+    Welcome!
+    <svg class="w-3 h-3 inline" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="6 9 12 15 18 9"></polyline>
+    </svg>
+  </span>
+
+  <!-- DROPDOWN -->
+  <div class="absolute right-0 mt-2 w-40 bg-white border border-gray-200 rounded shadow-md opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-opacity duration-200 z-50">
+    <a href="login.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Login</a>
+    <a href="register.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Register</a>
+    <a href="profile.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
+  </div>
+</div>
+
+
+  </div>
+</nav>
+
+<!-- Main Content -->
+<main class="max-w-7xl mx-auto px-4 py-6">
+
+  <!-- Slider & banners container -->
+  <section class="grid grid-cols-1 md:grid-cols-7 gap-4 mb-8">
+    
+    <!-- Left Top Banner -->
+    <div class="md:col-span-2 grid grid-rows-2 gap-4">
+      <div class="overflow-hidden rounded shadow-md">
+        <img 
+          src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/40978183-5114-4a78-9fea-99e63cc7219c.png" 
+          alt="Illustration showing e-commerce concept with shopping cart, delivery box, customer and online store on mobile device with blue background" 
+          class="w-full h-full object-cover transition-transform duration-300 hover:scale-105" 
+          loading="lazy"
+        />
+      </div>
+      <div class="overflow-hidden rounded shadow-md h-24">
+        <img 
+          src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/cb8897bf-6b16-40ee-bf7e-3f59dc9e179c.png" 
+          alt="Super sale banner showing a megaphone with lightning shapes and bright yellow and blue colors" 
+          class="w-full h-full object-cover transition-transform duration-300 hover:scale-105" 
+          loading="lazy"
+        />
+      </div>
+    </div>
+
+    <!-- Center Carousel Slider -->
+    <div class="md:col-span-3 relative rounded shadow-md overflow-hidden">
+      <div id="carousel" class="relative w-full h-72 md:h-96 select-none">
+        <div class="carousel-slide absolute inset-0 opacity-0 transition-opacity duration-500" aria-hidden="true" tabindex="-1">
+          <img 
+            src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/3dcee1d2-13f3-4b5d-b34b-045de29dd0ca.png" 
+            alt="Bright red circular background with colorful elements and text announcing a special 50% off big sale for only today" 
+            class="w-full h-full object-cover" 
+            loading="lazy" 
+          />
+        </div>
+        <div class="carousel-slide absolute inset-0 opacity-0 transition-opacity duration-500" aria-hidden="true" tabindex="-1">
+          <img 
+            src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/2782d937-ece9-46e5-97a9-e80947e2027d.png" 
+            alt="Modern banner showcasing electronics gadgets with colorful abstract shapes illustrating mega discount" 
+            class="w-full h-full object-cover" 
+            loading="lazy" 
+          />
+        </div>
+        <div class="carousel-slide absolute inset-0 opacity-0 transition-opacity duration-500" aria-hidden="true" tabindex="-1">
+          <img 
+            src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/392881a8-1ddb-4fde-9165-43ae74bf1245.png" 
+            alt="Seasonal fashion sale banner with modern graphics, dynamic typography and warm tones" 
+            class="w-full h-full object-cover" 
+            loading="lazy" 
+          />
+        </div>
+        <!-- Arrows -->
+        <button aria-label="Previous Slide" id="prev-slide" class="arrow-button arrow-left">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button aria-label="Next Slide" id="next-slide" class="arrow-button arrow-right">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+        <!-- Dots -->
+        <div id="carousel-dots" class="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-3 z-50">
+          <!-- Dots inserted dynamically -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Top Banner -->
+    <div class="md:col-span-2 grid grid-rows-2 gap-4">
+      <div class="overflow-hidden rounded shadow-md">
+        <img 
+          src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/a781cf77-d7f5-40fb-bd31-1fdd6c910cc1.png" 
+          alt="Illustration showing e-commerce concept with shopping cart, delivery box, customer and online store on mobile device with blue background - duplicate" 
+          class="w-full h-full object-cover transition-transform duration-300 hover:scale-105" 
+          loading="lazy"
+        />
+      </div>
+      <div class="overflow-hidden rounded shadow-md h-24">
+        <img 
+          src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/7269353b-e9b4-41ed-8f94-4db3f731da96.png" 
+          alt="Mega sale banner showing a megaphone with dynamic shapes and bright pink colors" 
+          class="w-full h-full object-cover transition-transform duration-300 hover:scale-105" 
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </section>
+
+  <hr class="border-gray-300 mb-8" />
+
+  <!-- Footer Section -->
+  <footer class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 py-8 px-4 border-t border-gray-200 text-gray-700 text-sm select-none">
+    <div>
+      <h5 class="text-base font-semibold mb-2">CUSTOMER SERVICE</h5>
+      <ul>
+        <li><a href="#" class="hover:underline">Contact Us</a></li>
+        <li><a href="#" class="hover:underline">Sell With Us</a></li>
+        <li><a href="#" class="hover:underline">Shipping</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5 class="text-base font-semibold mb-2">LINKS</h5>
+      <ul>
+        <li><a href="#" class="hover:underline">Contact Us</a></li>
+        <li><a href="#" class="hover:underline">Sell With Us</a></li>
+        <li><a href="#" class="hover:underline">Shipping</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5 class="text-base font-semibold mb-2">NEWSLETTER</h5>
+      <form id="newsletter-form" class="flex max-w-md">
+        <input 
+          type="email" 
+          name="email" 
+          id="newsletter-email" 
+          placeholder="Please Enter Your Email" 
+          required 
+          class="flex-grow border border-gray-300 rounded-l px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600"
+          aria-label="Enter your email for newsletter subscription"
+        />
+        <button 
+          type="submit" 
+          class="bg-gray-900 text-white px-4 rounded-r hover:bg-black transition-colors duration-300"
+          aria-label="Subscribe to newsletter"
+        >
+          Subscribe
+        </button>
+      </form>
+      <p id="newsletter-msg" class="text-green-600 mt-2 hidden" role="alert" aria-live="polite"></p>
+    </div>
+  </footer>
+</main>
+
+<script>
+  // Carousel Logic
+  (function() {
+    const slides = Array.from(document.querySelectorAll('.carousel-slide'));
+    const dotsContainer = document.getElementById('carousel-dots');
+    let currentIndex = 0;
+    let autoSlideInterval = null;
+
+    function showSlide(index) {
+      if (index < 0) index = slides.length - 1;
+      if (index >= slides.length) index = 0;
+      slides.forEach((slide, i) => {
+        slide.style.opacity = (i === index) ? '1' : '0';
+        slide.setAttribute('aria-hidden', i !== index);
+        slide.tabIndex = i === index ? 0 : -1;
+      });
+      currentIndex = index;
+      updateDots();
+    }
+
+    function updateDots() {
+      const dots = dotsContainer.querySelectorAll('button');
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('bg-blue-600', i === currentIndex);
+        dot.classList.toggle('bg-gray-300', i !== currentIndex);
+      });
+    }
+
+    function createDots() {
+      slides.forEach((slide, i) => {
+        const dot = document.createElement('button');
+        dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+        dot.className = 'w-3 h-3 rounded-full bg-gray-300 hover:bg-blue-600 transition-colors';
+        dot.addEventListener('click', () => {
+          showSlide(i);
+          resetAutoSlide();
+        });
+        dotsContainer.appendChild(dot);
+      });
+    }
+
+    function nextSlide() {
+      showSlide(currentIndex + 1);
+    }
+
+    function prevSlide() {
+      showSlide(currentIndex - 1);
+    }
+
+    function resetAutoSlide() {
+      if(autoSlideInterval) {
+        clearInterval(autoSlideInterval);
+      }
+      autoSlideInterval = setInterval(nextSlide, 6000);
+    }
+
+    createDots();
+    showSlide(0);
+    resetAutoSlide();
+
+    document.getElementById('next-slide').addEventListener('click', () => {
+      nextSlide();
+      resetAutoSlide();
+    });
+
+    document.getElementById('prev-slide').addEventListener('click', () => {
+      prevSlide();
+      resetAutoSlide();
+    });
+  })();
+
+  // Newsletter Form Submission Simulation
+  document.getElementById('newsletter-form').addEventListener('submit', e => {
+    e.preventDefault();
+    const emailInput = document.getElementById('newsletter-email');
+    const msg = document.getElementById('newsletter-msg');
+    if(emailInput.value.trim()) {
+      msg.textContent = 'Thank you for subscribing with ' + emailInput.value.trim() + '!';
+      msg.classList.remove('hidden');
+      emailInput.value = '';
+      setTimeout(() => msg.classList.add('hidden'), 5000);
+    }
+  });
+
+  // Responsive menu button (for demo, just toggles alert)
+  document.getElementById('menu-button').addEventListener('click', () => {
+    alert('Mobile menu toggle clicked. Implement your mobile menu here.');
+  });
+
+  // Cart button click (for demo)
+  document.getElementById('cart-button').addEventListener('click', () => {
+    alert('Cart clicked! Implement cart functionality here.');
+  });
+
+</script>
+</body>
+</html>
+

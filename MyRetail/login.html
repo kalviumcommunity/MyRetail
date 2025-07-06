@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - MyRetail</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+  <div class="bg-white p-8 rounded shadow-md w-full max-w-sm">
+    <h2 class="text-2xl font-bold mb-6 text-center">Login</h2>
+    <form id="login-form">
+      <div class="mb-4">
+        <label class="block text-sm font-medium mb-1" for="login-email">Email</label>
+        <input type="email" id="login-email" class="w-full border border-gray-300 rounded px-3 py-2" required />
+      </div>
+      <div class="mb-6">
+        <label class="block text-sm font-medium mb-1" for="login-password">Password</label>
+        <input type="password" id="login-password" class="w-full border border-gray-300 rounded px-3 py-2" required />
+      </div>
+      <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">Login</button>
+    </form>
+    <p class="text-center text-sm mt-4">Don't have an account? <a href="register.html" class="text-blue-600 hover:underline">Register</a></p>
+  </div>
+
+  <script>
+    document.getElementById('login-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      alert('Login logic will go here. This is a static demo.');
+    });
+  </script>
+
+</body>
+</html>

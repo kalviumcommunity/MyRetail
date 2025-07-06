@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Product Detail - MyRetail</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="p-6 font-sans">
+  <a href="shop.html" class="text-blue-600 hover:underline">&larr; Back to Shop</a>
+  <div id="product-detail" class="max-w-xl mx-auto p-6 border rounded shadow mt-4"></div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+    const products = {
+      1: { name: "Product 1", price: "$29.99", image: "https://via.placeholder.com/200x150" },
+      2: { name: "Product 2", price: "$49.99", image: "https://via.placeholder.com/200x150" },
+      3: { name: "Product 3", price: "$19.99", image: "https://via.placeholder.com/200x150" }
+    };
+    const product = products[id];
+    if (product) {
+      document.getElementById("product-detail").innerHTML = `
+        <img src="${product.image}" class="w-full mb-4 rounded" />
+        <h1 class="text-2xl font-semibold mb-2">${product.name}</h1>
+        <p class="text-gray-600 mb-4">Price: ${product.price}</p>
+        <a href="shop.html" class="text-blue-600 hover:underline">← Back to shop</a>
+      `;
+    } else {
+      document.getElementById("product-detail").textContent = "Product not found.";
+    }
+  </script>
+</body>
+</html>

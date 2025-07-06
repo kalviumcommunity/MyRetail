@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Brand - MyRetail</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+  <!-- Navbar -->
+  <nav class="bg-white shadow px-6 py-4 flex justify-between items-center">
+    <a href="index.html" class="text-xl font-bold text-gray-900">MyRetail</a>
+    <a href="shop.html" class="text-blue-600 hover:underline">Shop</a>
+  </nav>
+
+  <!-- Brand Heading -->
+  <div class="max-w-6xl mx-auto px-4 py-6">
+    <h1 id="brand-title" class="text-2xl font-semibold mb-4">Loading Brand...</h1>
+
+    <!-- Products -->
+    <div id="brand-products" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <!-- Dynamic content here -->
+    </div>
+  </div>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const brandName = urlParams.get('brand') || 'Unknown';
+    document.getElementById('brand-title').textContent = `${brandName} Products`;
+
+    const allProducts = [
+      { id: 1, brand: 'Nike', name: 'Nike Air Max', price: '₹4,999', image: 'https://via.placeholder.com/300x200?text=Nike+Air+Max' },
+      { id: 2, brand: 'Adidas', name: 'Adidas Running Shoes', price: '₹3,499', image: 'https://via.placeholder.com/300x200?text=Adidas+Running' },
+      { id: 3, brand: 'Puma', name: 'Puma Sneakers', price: '₹2,999', image: 'https://via.placeholder.com/300x200?text=Puma+Sneakers' },
+      { id: 4, brand: 'Nike', name: 'Nike Hoodie', price: '₹2,799', image: 'https://via.placeholder.com/300x200?text=Nike+Hoodie' },
+      { id: 5, brand: 'Adidas', name: 'Adidas Backpack', price: '₹1,499', image: 'https://via.placeholder.com/300x200?text=Adidas+Bag' },
+    ];
+
+    const filteredProducts = allProducts.filter(p => p.brand.toLowerCase() === brandName.toLowerCase());
+    const container = document.getElementById('brand-products');
+
+    if (filteredProducts.length === 0) {
+      container.innerHTML = `<p>No products found for ${brandName}.</p>`;
+    } else {
+      filteredProducts.forEach(product => {
+        const div = document.createElement('div');
+        div.className = "bg-white rounded shadow hover:shadow-lg transition";
+        div.innerHTML = `
+          <a href="product.html?id=${product.id}">
+            <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover rounded-t">
+            <div class="p-4">
+              <h3 class="text-lg font-semibold">${product.name}</h3>
+              <p class="text-blue-600 font-bold">${product.price}</p>
+            </div>
+          </a>
+        `;
+        container.appendChild(div);
+      });
+    }
+  </script>
+
+</body>
+</html>
